@@ -4,6 +4,7 @@ import 'package:dvla/screens/login.dart';
 import 'package:dvla/screens/signup.dart';
 import 'package:dvla/screens/homepage.dart';
 import 'package:dvla/screens/visitor_form.dart';
+// import 'package:dvla/screens/visitor_form.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -14,8 +15,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       //This is the first screen that will load when the app launches
-      initialRoute: LocationalMove.homepage,
+      initialRoute: LocationalMove.login,
       //initialRoute: LocationalMove.display,
       //The List of routes that can be navigated to. You can find this in the route.dart file in the routes folder
       routes: {

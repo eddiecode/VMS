@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables, unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
 import 'package:harperdb/harperdb.dart';
 
@@ -9,6 +11,8 @@ class Servercall extends StatefulWidget {
 }
 
 class _ServercallState extends State<Servercall> {
+  List? data;
+
   final String hDBURL = 'https://visitor-dvla.harperdbcloud.com';
   // This is a global variable for your username
   final String hDBUSER = 'visitor';
@@ -65,18 +69,130 @@ class _ServercallState extends State<Servercall> {
             return ListView.builder(
               itemCount: harperData.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  leading: Text(
-                    harperData[index]['FirstName'],
-                  ),
-                  title: Text(
-                    harperData[index]['LastName'],
-                    textAlign: TextAlign.center,
-                  ),
-                  trailing: Text(
-                    harperData[index]['PhoneNumber'].toString(),
+                return MaterialApp(
+                  home: Scaffold(
+                    body: data == null
+                        // ignore: prefer_const_constructors
+                        ? Center(child: CircularProgressIndicator())
+                        : DataTable(
+                            // ignore: prefer_const_literals_to_create_immutables
+                            columns: [
+                              const DataColumn(label: Text('First Name')),
+                              const DataColumn(label: Text('Last Name')),
+                              const DataColumn(label: Text('Company')),
+                              const DataColumn(label: Text('Officer')),
+                              const DataColumn(label: Text('Purpose')),
+                              const DataColumn(label: Text('Tag')),
+                            ],
+                            rows: data!
+                                .map(
+                                  (item) => DataRow(cells: [
+                                    DataCell(
+                                        Text(harperData[index]['FirstName'])),
+                                    DataCell(
+                                        Text(harperData[index]['LastName'])),
+                                    DataCell(Text(
+                                      harperData[index]['PhoneNumber']
+                                          .toString(),
+                                    )),
+                                    DataCell(
+                                        Text(harperData[index]['Company'])),
+                                    DataCell(
+                                        Text(harperData[index]['Officer'])),
+                                    DataCell(Text(
+                                      harperData[index]['Purpose'].toString(),
+                                    )),
+                                    DataCell(Text(
+                                      harperData[index]['Tag'].toString(),
+                                    ))
+                                  ]),
+                                )
+                                .toList(),
+                          ),
                   ),
                 );
+
+                // var dataColumn = const DataColumn(label: Text('Phone Number'));
+                // return SingleChildScrollView(
+                //   child: DataTable(
+                //     columns: [
+                //       const DataColumn(label: Text('First Name')),
+                //       const DataColumn(label: Text('Last Name')),
+                //       dataColumn,
+                //       const DataColumn(label: Text('Company')),
+                //       const DataColumn(label: Text('Officer')),
+                //       const DataColumn(label: Text('Purpose')),
+                //       const DataColumn(label: Text('Tag')),
+                //     ],
+                //     rows: data.then((value) {
+                //       return value
+                //           .map(
+                //             (item) => DataRow(cells: [
+                //               DataCell(Text(harperData[index]['FirstName'])),
+                //               DataCell(Text(harperData[index]['LastName'])),
+                //               DataCell(Text(
+                //                 harperData[index]['PhoneNumber'].toString(),
+                //               )),
+                //               DataCell(Text(harperData[index]['Company'])),
+                //               DataCell(Text(harperData[index]['Officer'])),
+                //               DataCell(Text(
+                //                 harperData[index]['Purpose'].toString(),
+                //               )),
+                //               DataCell(Text(
+                //                 harperData[index]['Tag'].toString(),
+                //               )),
+                //             ]),
+                //           )
+                //           .toList();
+                //     }),
+                //   ),
+                // );
+
+                // return Card(
+                //   child: Column(
+                //     children: [
+                //       ListTile(
+                //         title: Text(harperData[index]['FirstName'] +
+                //             ' ' +
+                //             harperData[index]['LastName']),
+                //         subtitle: Text(harperData[index]['Company']),
+                //         trailing: Text(
+                //           harperData[index]['PhoneNumber'].toString(),
+                //         ),
+                //       ),
+                //       ListTile(
+                //         title: Text(harperData[index]['Officer']),
+                //         trailing: Row(
+                //           mainAxisSize: MainAxisSize.min,
+                //           children: [
+                //             Chip(
+                //               label: Text(
+                //                 harperData[index]['Tag'].toString(),
+                //               ),
+                //             ),
+                //             const SizedBox(width: 4),
+                //             Chip(
+                //               label: Text(
+                //                 harperData[index]['purpose'].toString(),
+                //               ),
+                //             ),
+                //           ],
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // );
+                // return ListTile(
+                //   // leading: Text(
+                //   //   harperData[index]['FirstName'],
+                //   // ),
+                //   // subtitle: Text(harperData[index]['LastName']),
+                //   // title: Text(
+                //   //   harperData[index]['PhoneNumber'].toString(),
+                //   //   textAlign: TextAlign.justify,
+                //   // ),
+                //   // trailing: Text(harperData[index]['Company']),
+                // );
               },
             );
           } else {

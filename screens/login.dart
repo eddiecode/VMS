@@ -1,3 +1,4 @@
+import 'package:dvla/screens/homepage.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -9,6 +10,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String logo = "assets/images/driver.png";
+
+  bool isshown = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,18 +55,30 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                             TextFormField(
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 hintText: "Password",
                                 labelText: "Password",
-                                border: OutlineInputBorder(
+                                // errorText:
+                                border: const OutlineInputBorder(
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(30),
                                   ),
                                 ),
-                                suffixIcon: Icon(Icons.lock_rounded),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                      // Icons.remove_red_eye_outlined
+                                      isshown == true
+                                          ? Icons.visibility_off_outlined
+                                          : Icons.visibility_outlined),
+                                  onPressed: () {
+                                    setState(() {
+                                      isshown = !isshown;
+                                    });
+                                  },
+                                ),
                               ),
                               keyboardType: TextInputType.text,
-                              obscureText: true,
+                              obscureText: isshown,
                               maxLength: 30,
                             ),
                             Padding(
@@ -73,7 +89,15 @@ class _LoginPageState extends State<LoginPage> {
                                 height: MediaQuery.of(context).size.height / 20,
                                 width: MediaQuery.of(context).size.width / 2,
                                 child: TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const HomePage(),
+                                        ),
+                                        (route) => false);
+                                  },
                                   style: TextButton.styleFrom(
                                     backgroundColor: Colors.orange,
                                     foregroundColor: Colors.white,
@@ -131,15 +155,16 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                   child: TextFormField(
                                     decoration: const InputDecoration(
-                                        hintText: "User Name",
-                                        labelText: "User Name",
-                                        border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(30),
-                                          ),
+                                      hintText: "User Name",
+                                      labelText: "User Name",
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(30),
                                         ),
-                                        suffixIcon:
-                                            Icon(Icons.account_circle_rounded)),
+                                      ),
+                                      suffixIcon:
+                                          Icon(Icons.account_circle_rounded),
+                                    ),
                                   ),
                                 ),
                                 TextFormField(
@@ -167,7 +192,15 @@ class _LoginPageState extends State<LoginPage> {
                                     width:
                                         MediaQuery.of(context).size.width / 2,
                                     child: TextButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.pushAndRemoveUntil(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const HomePage(),
+                                            ),
+                                            (route) => false);
+                                      },
                                       style: TextButton.styleFrom(
                                         backgroundColor: Colors.orange,
                                         foregroundColor: Colors.white,
