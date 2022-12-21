@@ -230,7 +230,7 @@ class _VisitorFormState extends State<VisitorForm> {
         ],
         onChanged: (value) {
           setState(() {
-            purpose = value as String?;
+            purpose = value as String;
           });
         },
       ));
