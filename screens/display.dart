@@ -55,106 +55,110 @@ class _ServercallState extends State<Servercall> {
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.connectionState == ConnectionState.done) {
-            // return ListView.builder(
-            //   itemCount: harperData.length,
-            //   itemBuilder: (context, index) {
-            return DataTable(
-              columns: const [
-                DataColumn(
-                  label: Text('First Name'),
-                ),
-                DataColumn(
-                  label: Text('Last Name'),
-                ),
-                DataColumn(
-                  label: Text('Company'),
-                ),
-                DataColumn(
-                  label: Text('Officer'),
-                ),
-                DataColumn(
-                  label: Text('Purpose'),
-                ),
-                DataColumn(
-                  label: Text('tag'),
-                ),
-              ],
-              rows: harperData.map((h) {
-                return DataRow(
-                  cells: [
-                    DataCell(
-                      Text(
-                        (h['FirstName']) == null ? 'Null' : h['FirstName'],
-                      ),
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Center(
+                child: DataTable(
+                  columns: const [
+                    DataColumn(
+                      label: Text('firstname'),
                     ),
-                    DataCell(
-                      Text(
-                        (h['LastName']) == null ? 'Null' : h['LastName'],
-                      ),
+                    DataColumn(
+                      label: Text('lastname'),
                     ),
-                    DataCell(
-                      Text(
-                        (h['Company']) == null ? 'Null' : h['Company'],
-                      ),
+                    DataColumn(
+                      label: Text('company'),
                     ),
-                    DataCell(
-                      Text(
-                        (h['Officer']) == null ? 'Null' : h['Officer'],
-                      ),
+                    DataColumn(
+                      label: Text('officer'),
                     ),
-                    DataCell(
-                      Text((h['purpose']) == null ? 'Null' : h['purpose']),
+                    DataColumn(
+                      label: Text('purpose'),
                     ),
-                    DataCell(
-                      Text((h['Tag']) == null ? 'Null' : h['Tag'].toString()),
+                    DataColumn(
+                      label: Text('tag'),
                     ),
                   ],
-                );
-              }).toList(),
-              // rows:  [
-              //   DataRow(
-              //     cells: [
-              //       DataCell(
-              //         Text(
-              //           (harperData[index]['FirstName']) == null
-              //               ? 'Null'
-              //               : harperData[index]['FirstName'],
-              //         ),
-              //       ),
-              //       DataCell(
-              //         Text(
-              //           (harperData[index]['LastName']) == null
-              //               ? 'Null'
-              //               : harperData[index]['LastName'],
-              //         ),
-              //       ),
-              //       DataCell(
-              //         Text(
-              //           (harperData[index]['Company']) == null
-              //               ? 'Null'
-              //               : harperData[index]['Company'],
-              //         ),
-              //       ),
-              //       DataCell(
-              //         Text(
-              //           (harperData[index]['Officer']) == null
-              //               ? 'Null'
-              //               : harperData[index]['Officer'],
-              //         ),
-              //       ),
-              //       DataCell(
-              //         Text((harperData[index]['purpose']) == null
-              //             ? 'Null'
-              //             : harperData[index]['purpose']),
-              //       ),
-              //       DataCell(
-              //         Text((harperData[index]['Tag']) == null
-              //             ? 'Null'
-              //             : harperData[index]['Tag'].toString()),
-              //       ),
-              //     ],
-              //   )
-              // ],
+                  rows: harperData.map((h) {
+                    return DataRow(
+                      cells: [
+                        DataCell(
+                          Text(
+                            (h['FirstName']) == null ? 'Null' : h['FirstName'],
+                          ),
+                        ),
+                        DataCell(
+                          Text(
+                            (h['LastName']) == null ? 'Null' : h['LastName'],
+                          ),
+                        ),
+                        DataCell(
+                          Text(
+                            (h['Company']) == null ? 'Null' : h['Company'],
+                          ),
+                        ),
+                        DataCell(
+                          Text(
+                            (h['Officer']) == null ? 'Null' : h['Officer'],
+                          ),
+                        ),
+                        DataCell(
+                          Text((h['purpose']) == null ? 'Null' : h['purpose']),
+                        ),
+                        DataCell(
+                          Text((h['Tag']) == null
+                              ? 'Null'
+                              : h['Tag'].toString()),
+                        ),
+                      ],
+                    );
+                  }).toList(),
+                  // rows:  [
+                  //   DataRow(
+                  //     cells: [
+                  //       DataCell(
+                  //         Text(
+                  //           (harperData[index]['FirstName']) == null
+                  //               ? 'Null'
+                  //               : harperData[index]['FirstName'],
+                  //         ),
+                  //       ),
+                  //       DataCell(
+                  //         Text(
+                  //           (harperData[index]['LastName']) == null
+                  //               ? 'Null'
+                  //               : harperData[index]['LastName'],
+                  //         ),
+                  //       ),
+                  //       DataCell(
+                  //         Text(
+                  //           (harperData[index]['Company']) == null
+                  //               ? 'Null'
+                  //               : harperData[index]['Company'],
+                  //         ),
+                  //       ),
+                  //       DataCell(
+                  //         Text(
+                  //           (harperData[index]['Officer']) == null
+                  //               ? 'Null'
+                  //               : harperData[index]['Officer'],
+                  //         ),
+                  //       ),
+                  //       DataCell(
+                  //         Text((harperData[index]['purpose']) == null
+                  //             ? 'Null'
+                  //             : harperData[index]['purpose']),
+                  //       ),
+                  //       DataCell(
+                  //         Text((harperData[index]['Tag']) == null
+                  //             ? 'Null'
+                  //             : harperData[index]['Tag'].toString()),
+                  //       ),
+                  //     ],
+                  //   )
+                  // ],
+                ),
+              ),
             );
             //   },
             // );
