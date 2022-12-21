@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                         MaterialPageRoute(
                           builder: (context) => const VisitorForm(),
                         ),
-                        (route) => false);
+                        (route) => route.isFirst);
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8.0, right: 8.0),

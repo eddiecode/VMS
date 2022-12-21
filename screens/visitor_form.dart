@@ -25,100 +25,85 @@ class _VisitorFormState extends State<VisitorForm> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   Widget _firstName() {
-    final formKey = GlobalKey<FormState>();
-
-    return Form(
-      key: formKey,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        child: TextFormField(
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(30),
-                ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: TextFormField(
+        decoration: const InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(30),
               ),
-              labelText: 'First Name'),
-          keyboardType: TextInputType.name,
-          validator: (value) {
-            if (value!.isEmpty) {
-              return 'Please enter a first name';
-            }
-            if (!value.contains(RegExp(r'^[a-zA-Z ]*$'))) {
-              return 'First name should contain only alphabetical characters';
-            }
-            return null;
-          },
-          onSaved: (value) {
-            firstname = value;
-          },
-        ),
+            ),
+            labelText: 'First Name'),
+        keyboardType: TextInputType.name,
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please enter a first name';
+          }
+          if (!value.contains(RegExp(r'^[a-zA-Z ]*$'))) {
+            return 'First name should contain only alphabetical characters';
+          }
+          return null;
+        },
+        onSaved: (value) {
+          firstname = value;
+        },
       ),
     );
   }
 
   Widget _lastName() {
-    final formKey = GlobalKey<FormState>();
-
-    return Form(
-      key: formKey,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        child: TextFormField(
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(30),
-                ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: TextFormField(
+        decoration: const InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(30),
               ),
-              labelText: 'Last Name'),
-          keyboardType: TextInputType.name,
-          validator: (value) {
-            if (value!.isEmpty) {
-              return 'Please enter a Last Name';
-            }
-            if (!value.contains(RegExp(r'^[a-zA-Z ]*$'))) {
-              return 'Last Name should contain only alphabetical characters';
-            }
-            return null;
-          },
-          onSaved: (value) {
-            lastname = value;
-          },
-        ),
+            ),
+            labelText: 'Last Name'),
+        keyboardType: TextInputType.name,
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please enter a Last Name';
+          }
+          if (!value.contains(RegExp(r'^[a-zA-Z ]*$'))) {
+            return 'Last Name should contain only alphabetical characters';
+          }
+          return null;
+        },
+        onSaved: (value) {
+          lastname = value;
+        },
       ),
     );
   }
 
   Widget _phoneNumber() {
-    final formKey = GlobalKey<FormState>();
-
-    return Form(
-      key: formKey,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        child: TextFormField(
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(30),
-                ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: TextFormField(
+        decoration: const InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(30),
               ),
-              labelText: 'Phone Number'),
-          keyboardType: TextInputType.number,
-          validator: (value) {
-            if (value!.isEmpty) {
-              return 'Please enter a phone number';
-            }
-            if (!value.contains(RegExp(r'^[0-9]*$'))) {
-              return 'Phone number should contain only numeric characters';
-            }
-            return null;
-          },
-          onSaved: (value) {
-            phoneNumber = value;
-          },
-        ),
+            ),
+            labelText: 'Phone Number'),
+        keyboardType: TextInputType.number,
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please enter a phone number';
+          }
+          if (!value.contains(RegExp(r'^[0-9]*$'))) {
+            return 'Phone number should contain only numeric characters';
+          }
+          return null;
+        },
+        onSaved: (value) {
+          phoneNumber = value;
+        },
       ),
     );
   }
@@ -149,31 +134,26 @@ class _VisitorFormState extends State<VisitorForm> {
   }
 
   Widget _officerToSee() {
-    final formKey = GlobalKey<FormState>();
-
-    return Form(
-      key: formKey,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        child: TextFormField(
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(30),
-                ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: TextFormField(
+        decoration: const InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(30),
               ),
-              labelText: 'Officer To See'),
-          keyboardType: TextInputType.none,
-          validator: (value) {
-            if (value!.isEmpty) {
-              return 'Please enter an Officer To See';
-            }
-            return null;
-          },
-          onSaved: (value) {
-            officerToSee = value;
-          },
-        ),
+            ),
+            labelText: 'Officer To See'),
+        keyboardType: TextInputType.none,
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please enter an Officer To See';
+          }
+          return null;
+        },
+        onSaved: (value) {
+          officerToSee = value;
+        },
       ),
     );
   }
@@ -260,31 +240,6 @@ class _VisitorFormState extends State<VisitorForm> {
     );
   }
 
-  Widget _time() {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: TextFormField(
-        decoration: const InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(30),
-              ),
-            ),
-            labelText: 'Time'),
-        keyboardType: TextInputType.datetime,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return 'Please enter Time';
-          }
-          return null;
-        },
-        onSaved: (value) {
-          time = value;
-        },
-      ),
-    );
-  }
-
   final String hDBURL = 'https://visitor-dvla.harperdbcloud.com';
   // This is a global variable for your username
   final String hDBUSER = 'visitor';
@@ -294,6 +249,11 @@ class _VisitorFormState extends State<VisitorForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        foregroundColor: Colors.black,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: LayoutBuilder(
@@ -308,7 +268,7 @@ class _VisitorFormState extends State<VisitorForm> {
                       ),
                     ),
                     SizedBox(
-                      width: MediaQuery.of(context).size.width - 100,
+                      width: MediaQuery.of(context).size.width - 150,
                       child: Form(
                         key: formKey,
                         child: Column(
@@ -321,7 +281,6 @@ class _VisitorFormState extends State<VisitorForm> {
                             _officerToSee(),
                             _purpose(),
                             _tag(),
-                            _time(),
                             const SizedBox(height: 100),
                             ElevatedButton(
                               child: const Text(
@@ -364,15 +323,7 @@ class _VisitorFormState extends State<VisitorForm> {
               } else {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Center(
-                        child: CircleAvatar(
-                          backgroundImage: AssetImage(logo),
-                        ),
-                      ),
-                    ),
-                  ],
+                  children: const [],
                 );
               }
             },
