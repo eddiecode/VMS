@@ -55,67 +55,109 @@ class _ServercallState extends State<Servercall> {
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.connectionState == ConnectionState.done) {
-            return ListView.builder(
-              itemCount: harperData.length,
-              itemBuilder: (context, index) {
-                return DataTable(
-                  columns: const [
-                    DataColumn(
-                      label: Text('First Name'),
+            // return ListView.builder(
+            //   itemCount: harperData.length,
+            //   itemBuilder: (context, index) {
+            return DataTable(
+              columns: const [
+                DataColumn(
+                  label: Text('First Name'),
+                ),
+                DataColumn(
+                  label: Text('Last Name'),
+                ),
+                DataColumn(
+                  label: Text('Company'),
+                ),
+                DataColumn(
+                  label: Text('Officer'),
+                ),
+                DataColumn(
+                  label: Text('Purpose'),
+                ),
+                DataColumn(
+                  label: Text('tag'),
+                ),
+              ],
+              rows: harperData.map((h) {
+                return DataRow(
+                  cells: [
+                    DataCell(
+                      Text(
+                        (h['FirstName']) == null ? 'Null' : h['FirstName'],
+                      ),
                     ),
-                    DataColumn(
-                      label: Text('Last Name'),
+                    DataCell(
+                      Text(
+                        (h['LastName']) == null ? 'Null' : h['LastName'],
+                      ),
                     ),
-                    DataColumn(
-                      label: Text('Company'),
+                    DataCell(
+                      Text(
+                        (h['Company']) == null ? 'Null' : h['Company'],
+                      ),
                     ),
-                    DataColumn(
-                      label: Text('Officer'),
+                    DataCell(
+                      Text(
+                        (h['Officer']) == null ? 'Null' : h['Officer'],
+                      ),
                     ),
-                    DataColumn(
-                      label: Text('Purpose'),
+                    DataCell(
+                      Text((h['purpose']) == null ? 'Null' : h['purpose']),
                     ),
-                    DataColumn(
-                      label: Text('tag'),
+                    DataCell(
+                      Text((h['Tag']) == null ? 'Null' : h['Tag'].toString()),
                     ),
                   ],
-                  rows: harperData.map((h) {
-                    return DataRow(
-                      cells: [
-                        DataCell(
-                          Text(
-                            (h['FirstName']) == null ? 'Null' : h['FirstName'],
-                          ),
-                        ),
-                        DataCell(
-                          Text(
-                            (h['LastName']) == null ? 'Null' : h['LastName'],
-                          ),
-                        ),
-                        DataCell(
-                          Text(
-                            (h['Company']) == null ? 'Null' : h['Company'],
-                          ),
-                        ),
-                        DataCell(
-                          Text(
-                            (h['Officer']) == null ? 'Null' : h['Officer'],
-                          ),
-                        ),
-                        DataCell(
-                          Text((h['purpose']) == null ? 'Null' : h['purpose']),
-                        ),
-                        DataCell(
-                          Text((h['Tag']) == null
-                              ? 'Null'
-                              : h['Tag'].toString()),
-                        ),
-                      ],
-                    );
-                  }).toList(),
                 );
-              },
+              }).toList(),
+              // rows:  [
+              //   DataRow(
+              //     cells: [
+              //       DataCell(
+              //         Text(
+              //           (harperData[index]['FirstName']) == null
+              //               ? 'Null'
+              //               : harperData[index]['FirstName'],
+              //         ),
+              //       ),
+              //       DataCell(
+              //         Text(
+              //           (harperData[index]['LastName']) == null
+              //               ? 'Null'
+              //               : harperData[index]['LastName'],
+              //         ),
+              //       ),
+              //       DataCell(
+              //         Text(
+              //           (harperData[index]['Company']) == null
+              //               ? 'Null'
+              //               : harperData[index]['Company'],
+              //         ),
+              //       ),
+              //       DataCell(
+              //         Text(
+              //           (harperData[index]['Officer']) == null
+              //               ? 'Null'
+              //               : harperData[index]['Officer'],
+              //         ),
+              //       ),
+              //       DataCell(
+              //         Text((harperData[index]['purpose']) == null
+              //             ? 'Null'
+              //             : harperData[index]['purpose']),
+              //       ),
+              //       DataCell(
+              //         Text((harperData[index]['Tag']) == null
+              //             ? 'Null'
+              //             : harperData[index]['Tag'].toString()),
+              //       ),
+              //     ],
+              //   )
+              // ],
             );
+            //   },
+            // );
           } else {
             return const Center(
               child: Text('Something is broken'),
@@ -123,6 +165,49 @@ class _ServercallState extends State<Servercall> {
           }
         },
       ),
+      // body: data == null
+      //     ? const Center(
+      //         child: CircularProgressIndicator(),
+      //       )
+      //     : ListView.builder(
+      //         itemCount: data!.length,
+      //         itemBuilder: (context, index) {
+      //           return DataTable(
+      //             columns: const [
+      //               DataColumn(
+      //                 label: Text('First Name'),
+      //               ),
+      //               DataColumn(
+      //                 label: Text('Last Name'),
+      //               ),
+      //               DataColumn(
+      //                 label: Text('Company'),
+      //               ),
+      //               DataColumn(
+      //                 label: Text('Officer'),
+      //               ),
+      //               DataColumn(
+      //                 label: Text('Purpose'),
+      //               ),
+      //               DataColumn(
+      //                 label: Text('tag'),
+      //               ),
+      //             ],
+      //             rows: [
+      //               DataRow(
+      //                 cells: [
+      //                   DataCell(data![index]['FirstName']),
+      //                   DataCell(data![index]['LastName']),
+      //                   DataCell(data![index]['Company']),
+      //                   DataCell(data![index]['Officer']),
+      //                   DataCell(data![index]['purpose']),
+      //                   DataCell(data![index]['Tag']),
+      //                 ],
+      //               )
+      //             ],
+      //           );
+      //         },
+      //       )
     );
   }
 }
