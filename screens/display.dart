@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:harperdb/harperdb.dart';
 
@@ -47,6 +49,16 @@ class _ServercallState extends State<Servercall> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        foregroundColor: Color.fromARGB(255, 10, 157, 49),
+      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   foregroundColor: Colors.blue,
+      // ),
       body: FutureBuilder(
         future: harperAPI,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -55,110 +67,130 @@ class _ServercallState extends State<Servercall> {
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.connectionState == ConnectionState.done) {
-            return SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Center(
-                child: DataTable(
-                  columns: const [
-                    DataColumn(
-                      label: Text('firstname'),
-                    ),
-                    DataColumn(
-                      label: Text('lastname'),
-                    ),
-                    DataColumn(
-                      label: Text('company'),
-                    ),
-                    DataColumn(
-                      label: Text('officer'),
-                    ),
-                    DataColumn(
-                      label: Text('purpose'),
-                    ),
-                    DataColumn(
-                      label: Text('tag'),
-                    ),
-                  ],
-                  rows: harperData.map((h) {
-                    return DataRow(
-                      cells: [
-                        DataCell(
-                          Text(
-                            (h['FirstName']) == null ? 'Null' : h['FirstName'],
-                          ),
+            return Column(
+              children: [
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Center(
+                    child: DataTable(
+                      columns: const [
+                        DataColumn(
+                          label: Text('First Name'),
                         ),
-                        DataCell(
-                          Text(
-                            (h['LastName']) == null ? 'Null' : h['LastName'],
-                          ),
+                        DataColumn(
+                          label: Text('Last Name'),
                         ),
-                        DataCell(
-                          Text(
-                            (h['Company']) == null ? 'Null' : h['Company'],
-                          ),
+                        DataColumn(
+                          label: Text('Phone Number'),
                         ),
-                        DataCell(
-                          Text(
-                            (h['Officer']) == null ? 'Null' : h['Officer'],
-                          ),
+                        DataColumn(
+                          label: Text('Company/ Institution'),
                         ),
-                        DataCell(
-                          Text((h['purpose']) == null ? 'Null' : h['purpose']),
+                        DataColumn(
+                          label: Text('Officer To See'),
                         ),
-                        DataCell(
-                          Text((h['Tag']) == null
-                              ? 'Null'
-                              : h['Tag'].toString()),
+                        DataColumn(
+                          label: Text('Purpose'),
+                        ),
+                        DataColumn(
+                          label: Text('Tag'),
                         ),
                       ],
-                    );
-                  }).toList(),
-                  // rows:  [
-                  //   DataRow(
-                  //     cells: [
-                  //       DataCell(
-                  //         Text(
-                  //           (harperData[index]['FirstName']) == null
-                  //               ? 'Null'
-                  //               : harperData[index]['FirstName'],
-                  //         ),
-                  //       ),
-                  //       DataCell(
-                  //         Text(
-                  //           (harperData[index]['LastName']) == null
-                  //               ? 'Null'
-                  //               : harperData[index]['LastName'],
-                  //         ),
-                  //       ),
-                  //       DataCell(
-                  //         Text(
-                  //           (harperData[index]['Company']) == null
-                  //               ? 'Null'
-                  //               : harperData[index]['Company'],
-                  //         ),
-                  //       ),
-                  //       DataCell(
-                  //         Text(
-                  //           (harperData[index]['Officer']) == null
-                  //               ? 'Null'
-                  //               : harperData[index]['Officer'],
-                  //         ),
-                  //       ),
-                  //       DataCell(
-                  //         Text((harperData[index]['purpose']) == null
-                  //             ? 'Null'
-                  //             : harperData[index]['purpose']),
-                  //       ),
-                  //       DataCell(
-                  //         Text((harperData[index]['Tag']) == null
-                  //             ? 'Null'
-                  //             : harperData[index]['Tag'].toString()),
-                  //       ),
-                  //     ],
-                  //   )
-                  // ],
+                      rows: harperData.map((h) {
+                        return DataRow(
+                          cells: [
+                            DataCell(
+                              Text(
+                                (h['FirstName']) == null
+                                    ? 'Null'
+                                    : h['FirstName'],
+                              ),
+                            ),
+                            DataCell(
+                              Text(
+                                (h['LastName']) == null
+                                    ? 'Null'
+                                    : h['LastName'],
+                              ),
+                            ),
+                            DataCell(
+                              Text(
+                                (h['PhoneNumber']) == null
+                                    ? 'Null'
+                                    : h['PhoneNumber'],
+                              ),
+                            ),
+                            DataCell(
+                              Text(
+                                (h['Company']) == null ? 'Null' : h['Company'],
+                              ),
+                            ),
+                            DataCell(
+                              Text(
+                                (h['Officer']) == null ? 'Null' : h['Officer'],
+                              ),
+                            ),
+                            DataCell(
+                              Text((h['purpose']) == null
+                                  ? 'Null'
+                                  : h['purpose']),
+                            ),
+                            DataCell(
+                              Text((h['Tag']) == null
+                                  ? 'Null'
+                                  : h['Tag'].toString()),
+                            ),
+                          ],
+                        );
+                      }).toList(),
+                      // rows:  [
+                      //   DataRow(
+                      //     cells: [
+                      //       DataCell(
+                      //         Text(
+                      //           (harperData[index]['FirstName']) == null
+                      //               ? 'Null'
+                      //               : harperData[index]['FirstName'],
+                      //         ),
+                      //       ),
+                      //       DataCell(
+                      //         Text(
+                      //           (harperData[index]['LastName']) == null
+                      //               ? 'Null'
+                      //               : harperData[index]['LastName'],
+                      //         ),
+                      //       ),
+                      //       DataCell(
+                      //         Text(
+                      //           (harperData[index]['Company']) == null
+                      //               ? 'Null'
+                      //               : harperData[index]['Company'],
+                      //         ),
+                      //       ),
+                      //       DataCell(
+                      //         Text(
+                      //           (harperData[index]['Officer']) == null
+                      //               ? 'Null'
+                      //               : harperData[index]['Officer'],
+                      //         ),
+                      //       ),
+                      //       DataCell(
+                      //         Text((harperData[index]['purpose']) == null
+                      //             ? 'Null'
+                      //             : harperData[index]['purpose']),
+                      //       ),
+                      //       DataCell(
+                      //         Text((harperData[index]['Tag']) == null
+                      //             ? 'Null'
+                      //             : harperData[index]['Tag'].toString()),
+                      //       ),
+                      //     ],
+                      //   )
+                      // ],
+                    ),
+                  ),
                 ),
-              ),
+              ],
             );
             //   },
             // );
