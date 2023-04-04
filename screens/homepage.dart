@@ -119,7 +119,8 @@ class _HomePageState extends State<HomePage> {
                         MaterialPageRoute(
                           builder: (context) => const Servercall(),
                         ),
-                        (route) => false);
+                        (route) => route.isFirst
+                    );
                   },
                   // elevation: 5,
                   child: Row(
