@@ -17,18 +17,30 @@ class _VisitorFormState extends State<VisitorForm> {
   String? phoneNumber;
   String? company;
   String? officerToSee;
+  String? department;
   String? purpose;
   String? tag;
   String? time;
+  final date = DateTime.now().toString();
 
   String logo = "assets/images/driver.png";
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  // ignore: unused_element
+  void _submitForm() {
+    if (formKey.currentState!.validate()) {
+      // submit the form and reset form fields
+      formKey.currentState!.save();
+      formKey.currentState!.reset();
+    }
+  }
+
   Widget _firstName() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: TextFormField(
+        key: formKey,
         decoration: const InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(
@@ -361,6 +373,7 @@ class _VisitorFormState extends State<VisitorForm> {
                             _phoneNumber(),
                             _company(),
                             _officerToSee(),
+                            _department(),
                             _purpose(),
                             _tag(),
                             const SizedBox(height: 100),
@@ -380,6 +393,7 @@ class _VisitorFormState extends State<VisitorForm> {
                                 debugPrint(phoneNumber);
                                 debugPrint(company);
                                 debugPrint(officerToSee);
+                                debugPrint(department);
                                 debugPrint(purpose);
                                 debugPrint(tag);
                                 debugPrint(time);
@@ -391,7 +405,7 @@ class _VisitorFormState extends State<VisitorForm> {
                                     {
                                       "operation": "sql",
                                       "sql":
-                                          "insert into Visitors.users (FirstName, LastName, PhoneNumber, Company, Officer, purpose, Tag) values ('$firstname', '$lastname', '$phoneNumber', '$company', '$officerToSee', '$purpose', '$tag')"
+                                          "insert into Visitors.users (FirstName, LastName, PhoneNumber, Company, Officer, department, purpose, Tag, check_in_date) values ('$firstname', '$lastname', '$phoneNumber', '$company', '$officerToSee', '$department', '$purpose', '$tag', '$date')"
                                     },
                                   );
                                 }
@@ -685,6 +699,7 @@ class _VisitorFormState extends State<VisitorForm> {
                             _phoneNumber(),
                             _company(),
                             _officerToSee(),
+                            _department(),
                             _purpose(),
                             _tag(),
                             const SizedBox(height: 100),
@@ -697,6 +712,7 @@ class _VisitorFormState extends State<VisitorForm> {
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold),
                               ),
+
                               onPressed: () {
                                 formKey.currentState!.save();
                                 debugPrint(firstname);
@@ -704,6 +720,7 @@ class _VisitorFormState extends State<VisitorForm> {
                                 debugPrint(phoneNumber);
                                 debugPrint(company);
                                 debugPrint(officerToSee);
+                                debugPrint(department);
                                 debugPrint(purpose);
                                 debugPrint(tag);
                                 debugPrint(time);
@@ -715,11 +732,26 @@ class _VisitorFormState extends State<VisitorForm> {
                                     {
                                       "operation": "sql",
                                       "sql":
-                                          "insert into Visitors.users (FirstName, LastName, PhoneNumber, Company, Officer, purpose, Tag) values ('$firstname', '$lastname', '$phoneNumber', '$company', '$officerToSee', '$purpose', '$tag')"
+                                          "insert into Visitors.users (FirstName, LastName, PhoneNumber, Company, Officer, department, purpose, Tag, check_in_date) values ('$firstname', '$lastname', '$phoneNumber', '$company', '$officerToSee', '$department', '$purpose', '$tag', '$date')"
                                     },
                                   );
                                 }
 
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: Text('Welcome to DVLA'),
+                                    content:
+                                        Text('Your visit has been recorded.'),
+                                    actions: [
+                                      TextButton(
+                                        child: Text('OK'),
+                                        onPressed: () =>
+                                            Navigator.of(context).pop(),
+                                      ),
+                                    ],
+                                  ),
+                                );
                                 senddata();
                               },
                             )
