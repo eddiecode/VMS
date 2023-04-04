@@ -1,4 +1,6 @@
 // import 'package:date_field/date_field.dart';
+// ignore_for_file: prefer_const_constructors
+
 import 'package:dvla/screens/display.dart';
 import 'package:dvla/screens/visitor_form.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String logo = "assets/images/driver.png";
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   bool isHovered = false;
 
   @override
@@ -21,15 +27,31 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/driver.png'),
+              ),
+            ),
+          ),
+          Center(
+            child: CircleAvatar(
+              backgroundImage: AssetImage(logo),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(50),
+            child: SizedBox(height: 30),
+          ),
           const Padding(
-            padding: EdgeInsets.all(5.0),
+            padding: EdgeInsets.all(15),
             child: Text(
               'DVLA VISITOR MANAGEMENT SYSTEM',
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
           ),
           const Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(15),
             child: Text(
               'Select any of the two options',
               style: TextStyle(
@@ -50,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                         MaterialPageRoute(
                           builder: (context) => const VisitorForm(),
                         ),
-                        (route) => false);
+                        (route) => route.isFirst);
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8.0, right: 8.0),
@@ -68,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             const Icon(
                               Icons.person_add_alt_outlined,
-                              color: Colors.black,
+                              color: Color.fromARGB(255, 3, 3, 3),
                               size: 30,
                             ),
                             Text(
@@ -97,7 +119,8 @@ class _HomePageState extends State<HomePage> {
                         MaterialPageRoute(
                           builder: (context) => const Servercall(),
                         ),
-                        (route) => false);
+                        (route) => route.isFirst
+                    );
                   },
                   // elevation: 5,
                   child: Row(
@@ -108,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                           width: 100,
                           height: 100,
                           decoration: const BoxDecoration(
-                            color: Colors.black,
+                            color: Color.fromARGB(255, 0, 0, 0),
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                           ),
                           child: const Icon(
