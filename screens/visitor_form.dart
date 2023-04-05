@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, unused_element, no_leading_underscores_for_local_identifiers, duplicate_ignore
 
 import 'package:flutter/material.dart';
 import 'package:harperdb/harperdb.dart';
@@ -11,6 +11,7 @@ class VisitorForm extends StatefulWidget {
   State<VisitorForm> createState() => _VisitorFormState();
 }
 
+// ignore: duplicate_ignore
 class _VisitorFormState extends State<VisitorForm> {
   String? firstname;
   String? lastname;
@@ -27,14 +28,14 @@ class _VisitorFormState extends State<VisitorForm> {
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  // ignore: unused_element
-  void _submitForm() {
-    if (formKey.currentState!.validate()) {
-      // submit the form and reset form fields
-      formKey.currentState!.save();
-      formKey.currentState!.reset();
-    }
-  }
+  // // ignore: unused_element
+  // void _submitForm() {
+  //   if (formKey.currentState!.validate()) {
+  //     // submit the form and reset form fields
+  //     formKey.currentState!.save();
+  //     formKey.currentState!.reset();
+  //   }
+  // }
 
   Widget _firstName() {
     return Padding(
@@ -207,6 +208,10 @@ class _VisitorFormState extends State<VisitorForm> {
           DropdownMenuItem(
             child: Text('HR'),
             value: 'hr',
+          ),
+          DropdownMenuItem(
+            child: Text('MIS'),
+            value: 'mis',
           ),
           DropdownMenuItem(
             child: Text('Service Excellence'),
@@ -736,12 +741,19 @@ class _VisitorFormState extends State<VisitorForm> {
                                   );
                                 }
 
+                                void _submitForm() {
+                                  if (formKey.currentState!.validate()) {
+                                    // submit the form and reset form fields
+                                    formKey.currentState!.save();
+                                    formKey.currentState!.reset();
+                                  }
+                                }
+
                                 showDialog(
                                   context: context,
                                   builder: (context) => AlertDialog(
                                     title: Text('Welcome to DVLA'),
-                                    content:
-                                        Text('Your visit has been recorded.'),
+                                    content: Text('YOUR SAFETY, OUR CONCERN.'),
                                     actions: [
                                       TextButton(
                                         child: Text('OK'),
