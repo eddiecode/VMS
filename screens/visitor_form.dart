@@ -157,7 +157,7 @@ class _VisitorFormState extends State<VisitorForm> {
               ),
             ),
             labelText: 'Officer To See'),
-        keyboardType: TextInputType.none,
+        keyboardType: TextInputType.name,
         validator: (value) {
           if (value!.isEmpty) {
             return 'Please enter an Officer To See';
