@@ -40,7 +40,6 @@ class _VisitorFormState extends State<VisitorForm> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: TextFormField(
-        key: formKey,
         decoration: const InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(
